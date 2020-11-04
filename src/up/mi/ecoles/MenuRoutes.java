@@ -26,22 +26,28 @@ public class MenuRoutes {
             String request = sc.nextLine();
             if (request.equals("2")) break;
 
-            switch (request) {
-                case "1" -> {
-                    System.out.println("_________________________________________________\n");
-                    System.out.println("\t\tVILLES A RELIER\n");
-                    this.agglomeration.displayVille();
-                    System.out.println("_________________________________________________\n");
+            if ("1".equals(request)) {
+                System.out.println("_________________________________________________\n");
+                System.out.println("\t\tVILLES A RELIER\n");
+                this.agglomeration.displayVille();
+                System.out.println("_________________________________________________\n");
 
-                    Scanner routeSc = new Scanner(System.in);
-                    System.out.print("Exemple : x,y \nVotre choix : ");
-                    String[] coords = routeSc.nextLine().split(",");
+                Scanner routeSc = new Scanner(System.in);
+                System.out.print("Exemple : x,y \nVotre choix : ");
+                String[] coords = routeSc.nextLine().split(",");
+                if (Integer.parseInt(coords[0]) > this.agglomeration.size() || Integer.parseInt(coords[1]) > this.agglomeration.size()) {
+                    System.out.println("\nL'une de ces villes n'existe pas.\n");
+                } else if (coords[0].equals(coords[1])) {
+                    System.out.println("\nVous ne pouvez pas relier une ville à elle-même.\n");
+                } else {
                     this.agglomeration.setMatrixXY(Integer.parseInt(coords[0]) - 1, Integer.parseInt(coords[1]) - 1);
                     System.out.println();
                     this.agglomeration.printMatrix();
                     System.out.println();
                 }
-                default -> System.out.println("Mauvais numéro");
+
+            } else {
+                System.out.println("Mauvais numéro");
             }
 
         }
