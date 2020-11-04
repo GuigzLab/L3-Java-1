@@ -4,6 +4,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+@SuppressWarnings({ "serial", "unused" })
 public class Agglomeration extends ArrayList<Ville> {
     /**
      * TODO Matrice ou liste d'adjacence
@@ -13,7 +14,7 @@ public class Agglomeration extends ArrayList<Ville> {
 
     public void displayVille() {
         for (int i = 0; i < this.size(); i++) {
-            System.out.println(i + 1 + " - " + this.get(i).getName());
+            System.out.println("\t\t   " + (i+1) + " - " + this.get(i).getName());
         }
     }
 
@@ -28,9 +29,9 @@ public class Agglomeration extends ArrayList<Ville> {
     }
 
     public void printMatrix() {
-        for (int i = 0; i < matrice.length; i++) {
-            for (int j = 0; j < matrice[i].length; j++) {
-                System.out.print(matrice[i][j] + " ");
+        for (boolean[] booleans : matrice) {
+            for (boolean aBoolean : booleans) {
+                System.out.print("\t" + aBoolean + " ");
             }
             System.out.println();
         }
@@ -46,4 +47,14 @@ public class Agglomeration extends ArrayList<Ville> {
         Arrays.fill(ecoles, true);
     }
 
+    public boolean[] getCityAdjacency(int cityId) {
+
+        boolean [] adj = new boolean[this.size()];
+
+        System.arraycopy(this.matrice[cityId], 0, adj, 0, this.size());
+
+        return adj;
+    }
+
 }
+
