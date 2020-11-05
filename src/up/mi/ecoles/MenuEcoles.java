@@ -6,7 +6,7 @@ public class MenuEcoles {
 
     private final Agglomeration agglomeration;
 
-    public MenuEcoles (Agglomeration agglomeration){
+    public MenuEcoles(Agglomeration agglomeration) {
         this.agglomeration = agglomeration;
     }
 
@@ -40,25 +40,23 @@ public class MenuEcoles {
 
                     Scanner addSchoolSc = new Scanner(System.in);
                     System.out.print("Votre choix : ");
-                    if (addSchoolSc.hasNextInt()){
+                    if (addSchoolSc.hasNextInt()) {
                         int cityNumber = addSchoolSc.nextInt();
                         System.out.println();
                         if (cityNumber <= this.agglomeration.size()) {
                             Ville city = this.agglomeration.get(cityNumber - 1);
-                            if (!city.hasSchool()){
+                            if (!city.hasSchool()) {
                                 city.setSchool(true);
-                                System.out.println("Vous avez bien ajouté une école à " + city.getName() + ".");
+                                System.out.println("Vous avez bien ajouté une école à " + city.getName() + ".\n");
                             } else {
-                                System.out.println(city.getName() + " possède déjà une école !");
+                                System.out.println(city.getName() + " possède déjà une école !\n");
                             }
                         } else {
-                            System.out.println("Cette ville n'existe pas.");
+                            System.out.println("Cette ville n'existe pas.\n");
                         }
                     } else {
-                        System.out.println("Veuillez entrer un numéro de ville.");
+                        System.out.println("Veuillez entrer un numéro de ville.\n");
                     }
-                    System.out.println();
-
 
                 }
                 case "2" -> {
@@ -69,14 +67,14 @@ public class MenuEcoles {
 
                     Scanner removeSchoolSc = new Scanner(System.in);
                     System.out.print("Votre choix : ");
-                    if (removeSchoolSc.hasNextInt()){
+                    if (removeSchoolSc.hasNextInt()) {
                         int cityNumber = removeSchoolSc.nextInt();
                         System.out.println();
                         if (cityNumber <= this.agglomeration.size()) {
                             Ville city = this.agglomeration.get(cityNumber - 1);
 
                             if (!city.hasSchool()) {
-                                System.out.println(city.getName() + " ne possède pas d'école !");
+                                System.out.println(city.getName() + " ne possède pas d'école !\n");
                                 break;
                             }
 
@@ -89,20 +87,18 @@ public class MenuEcoles {
                                     break;
                                 }
                             }
-                            if (removed){
-                                System.out.println("Vous avez bien supprimé l'école de " + city.getName() + ".");
+                            if (removed) {
+                                System.out.println("Vous avez bien supprimé l'école de " + city.getName() + ".\n");
                             } else {
-                                System.out.println("Vous ne pouvez pas supprimer l'école de " + city.getName() + ".");
+                                System.out.println("Vous ne pouvez pas supprimer l'école de " + city.getName() + ".\n");
                             }
 
                         } else {
-                            System.out.println("Cette ville n'existe pas.");
+                            System.out.println("Cette ville n'existe pas.\n");
                         }
                     } else {
-                        System.out.println("Veuillez entrer un numéro de ville.");
+                        System.out.println("Veuillez entrer un numéro de ville.\n");
                     }
-                    System.out.println();
-
                 }
                 default -> System.out.println("Mauvais numéro\n");
             }

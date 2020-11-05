@@ -6,9 +6,7 @@ import java.util.Arrays;
 
 @SuppressWarnings({"serial", "unused"})
 public class Agglomeration extends ArrayList<Ville> {
-    /**
-     * TODO Matrice ou liste d'adjacence
-     */
+
     boolean[][] matrice;
     boolean[] ecoles;
 

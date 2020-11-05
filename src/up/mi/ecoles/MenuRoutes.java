@@ -47,7 +47,7 @@ public class MenuRoutes {
                 }
 
             } else {
-                System.out.println("Mauvais numéro");
+                System.out.println("Mauvais numéro\n");
             }
 
         }
