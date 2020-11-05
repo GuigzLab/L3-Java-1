@@ -32,7 +32,7 @@ public class MenuEcoles {
             }
 
             switch (request) {
-                case "1" -> {
+                case "1":
                     System.out.println("_________________________________________________\n");
                     System.out.println("\t\tVILLES SANS ECOLE\n");
                     this.agglomeration.displayCityWithoutSchool();
@@ -57,9 +57,8 @@ public class MenuEcoles {
                     } else {
                         System.out.println("Veuillez entrer un numéro de ville.\n");
                     }
-
-                }
-                case "2" -> {
+                    break;
+                case "2":
                     System.out.println("_________________________________________________\n");
                     System.out.println("\t\tVILLES AVEC UNE ECOLE\n");
                     this.agglomeration.displayCityWithSchool();
@@ -67,6 +66,7 @@ public class MenuEcoles {
 
                     Scanner removeSchoolSc = new Scanner(System.in);
                     System.out.print("Votre choix : ");
+
                     if (removeSchoolSc.hasNextInt()) {
                         int cityNumber = removeSchoolSc.nextInt();
                         System.out.println();
@@ -97,10 +97,13 @@ public class MenuEcoles {
                             System.out.println("Cette ville n'existe pas.\n");
                         }
                     } else {
-                        System.out.println("Veuillez entrer un numéro de ville.\n");
+                        System.out.println("Veuillez entrer un numéro de ville valide.\n");
                     }
-                }
-                default -> System.out.println("Mauvais numéro\n");
+                    break;
+
+                default:
+                    System.out.println("Mauvais numéro\n");
+                    break;
             }
 
         }
