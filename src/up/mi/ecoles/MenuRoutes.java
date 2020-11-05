@@ -29,7 +29,7 @@ public class MenuRoutes {
             if ("1".equals(request)) {
                 System.out.println("_________________________________________________\n");
                 System.out.println("\t\tVILLES A RELIER\n");
-                this.agglomeration.displayVille();
+                this.agglomeration.displayCity();
                 System.out.println("_________________________________________________\n");
 
                 Scanner routeSc = new Scanner(System.in);

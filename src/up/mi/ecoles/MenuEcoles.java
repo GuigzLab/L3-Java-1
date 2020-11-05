@@ -34,8 +34,8 @@ public class MenuEcoles {
             switch (request) {
                 case "1" -> {
                     System.out.println("_________________________________________________\n");
-                    System.out.println("\t\tVILLE A SELECTIONNER\n");
-                    this.agglomeration.displayVille();
+                    System.out.println("\t\tVILLES SANS ECOLE\n");
+                    this.agglomeration.displayCityWithoutSchool();
                     System.out.println("_________________________________________________\n");
 
                     Scanner addSchoolSc = new Scanner(System.in);
@@ -63,8 +63,8 @@ public class MenuEcoles {
                 }
                 case "2" -> {
                     System.out.println("_________________________________________________\n");
-                    System.out.println("\t\tVILLE A SELECTIONNER\n");
-                    this.agglomeration.displayVille();
+                    System.out.println("\t\tVILLES AVEC UNE ECOLE\n");
+                    this.agglomeration.displayCityWithSchool();
                     System.out.println("_________________________________________________\n");
 
                     Scanner removeSchoolSc = new Scanner(System.in);
@@ -104,7 +104,7 @@ public class MenuEcoles {
                     System.out.println();
 
                 }
-                default -> System.out.println("Mauvais numéro");
+                default -> System.out.println("Mauvais numéro\n");
             }
 
         }

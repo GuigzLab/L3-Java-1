@@ -1,6 +1,5 @@
 package up.mi.ecoles;
 
-import java.awt.*;
 import java.util.Scanner;
 
 @SuppressWarnings("unused")
@@ -29,7 +28,7 @@ public class Main {
         System.out.println("_________________________________________________\n");
         System.out.println("\t\t LES VILLES\n");
 
-        agglomeration.displayVille();
+        agglomeration.displayCity();
         
         System.out.println();
         System.out.println("_________________________________________________\n");

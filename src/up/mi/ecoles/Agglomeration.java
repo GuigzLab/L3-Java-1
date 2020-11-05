@@ -4,7 +4,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-@SuppressWarnings({ "serial", "unused" })
+@SuppressWarnings({"serial", "unused"})
 public class Agglomeration extends ArrayList<Ville> {
     /**
      * TODO Matrice ou liste d'adjacence
@@ -12,20 +12,35 @@ public class Agglomeration extends ArrayList<Ville> {
     boolean[][] matrice;
     boolean[] ecoles;
 
-    public void displayVille() {
+    public void displayCity() {
         for (int i = 0; i < this.size(); i++) {
-            System.out.println("\t\t   " + (i+1) + " - " + this.get(i).getName());
+            System.out.println("\t\t   " + (i + 1) + " - " + this.get(i).getName());
         }
     }
 
-    public void initMatrice () {
+    public void displayCityWithSchool() {
+        for (int i = 0; i < this.size(); i++) {
+            if (this.get(i).hasSchool()) {
+                System.out.println("\t\t   " + (i + 1) + " - " + this.get(i).getName());
+            }
+        }
+    }
+
+    public void displayCityWithoutSchool() {
+        for (int i = 0; i < this.size(); i++) {
+            if (!this.get(i).hasSchool()) {
+                System.out.println("\t\t   " + (i + 1) + " - " + this.get(i).getName());
+            }
+        }
+    }
+
+    public void initMatrice() {
         matrice = new boolean[this.size()][this.size()];
         for (int i = 0; i < this.size(); i++) {
             for (int j = 0; j < this.size(); j++) {
                 matrice[i][j] = false;
             }
         }
-
     }
 
     public void printMatrix() {
@@ -49,7 +64,7 @@ public class Agglomeration extends ArrayList<Ville> {
 
     public boolean[] getCityAdjacency(int cityId) {
 
-        boolean [] adj = new boolean[this.size()];
+        boolean[] adj = new boolean[this.size()];
 
         System.arraycopy(this.matrice[cityId], 0, adj, 0, this.size());
 
