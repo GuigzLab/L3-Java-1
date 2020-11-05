@@ -69,5 +69,20 @@ public class Agglomeration extends ArrayList<Ville> {
         return adj;
     }
 
+    public boolean checkIfCityHasNearbySchool(int cityId) {
+
+        if (this.get(cityId).hasSchool()){
+            return true;
+        }
+        boolean[] adjacencyList = this.getCityAdjacency(cityId);
+        for (int i = 0; i < this.size(); i++) {
+            if (i != cityId && this.get(i).hasSchool() && adjacencyList[i]) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }
 

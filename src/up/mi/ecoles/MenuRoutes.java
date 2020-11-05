@@ -10,10 +10,6 @@ public class MenuRoutes {
         this.agglomeration = agglomeration;
     }
 
-    public Agglomeration getAgglomeration() {
-        return agglomeration;
-    }
-
     public void getMenu() {
 
         Scanner sc = new Scanner(System.in);
@@ -35,7 +31,12 @@ public class MenuRoutes {
                 Scanner routeSc = new Scanner(System.in);
                 System.out.print("Exemple : x,y \nVotre choix : ");
                 String[] coords = routeSc.nextLine().split(",");
-                if (Integer.parseInt(coords[0]) > this.agglomeration.size() || Integer.parseInt(coords[1]) > this.agglomeration.size()) {
+
+                if (coords.length < 2){
+                    System.out.println("\nVous devez entrer des numéros de villes séparés par une virgule.\n");
+                } else if (!coords[0].matches("^[0-9]+") || !coords[1].matches("^[0-9]+")) {
+                    System.out.println("\nVous devez entrer des numéros de villes uniquement.\n");
+                } else if (Integer.parseInt(coords[0]) > this.agglomeration.size() || Integer.parseInt(coords[1]) > this.agglomeration.size()) {
                     System.out.println("\nL'une de ces villes n'existe pas.\n");
                 } else if (coords[0].equals(coords[1])) {
                     System.out.println("\nVous ne pouvez pas relier une ville à elle-même.\n");

@@ -1,5 +1,7 @@
 package up.mi.ecoles;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class MenuEcoles {
@@ -79,18 +81,32 @@ public class MenuEcoles {
                             }
 
                             boolean[] adjacencyList = this.agglomeration.getCityAdjacency(cityNumber - 1);
-                            boolean removed = false;
+
+                            city.setSchool(false);
+                            ArrayList<Boolean> schools = new ArrayList<Boolean>();
+                            ArrayList<Integer> cities = new ArrayList<Integer>();
+
                             for (int i = 0; i < this.agglomeration.size(); i++) {
-                                if (city.hasSchool() && this.agglomeration.get(i).hasSchool() && adjacencyList[i]) {
-                                    city.setSchool(false);
-                                    removed = true;
-                                    break;
+                                if (adjacencyList[i]){
+                                    if (!this.agglomeration.checkIfCityHasNearbySchool(i)){
+                                        schools.add(false);
+                                        cities.add(i);
+                                    } else {
+                                        schools.add(true);
+                                    }
                                 }
                             }
-                            if (removed) {
+
+                            if (!schools.contains(false)) {
                                 System.out.println("Vous avez bien supprimé l'école de " + city.getName() + ".\n");
                             } else {
-                                System.out.println("Vous ne pouvez pas supprimer l'école de " + city.getName() + ".\n");
+                                city.setSchool(true);
+                                System.out.println("Vous ne pouvez pas supprimer l'école de " + city.getName() + ".");
+                                System.out.println("Liste des villes qui se retrouveraient sans école dans le voisinage si vous supprimiez l'école de " + city.getName());
+                                cities.forEach((i) -> {
+                                    System.out.println(this.agglomeration.get(i).getName());
+                                });
+                                System.out.println();
                             }
 
                         } else {
