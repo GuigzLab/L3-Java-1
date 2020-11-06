@@ -1,17 +1,25 @@
 package up.mi.ecoles;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ * Represente le menu pour la gestion des écoles
+ */
 public class MenuEcoles {
 
+    /**
+     * L'agglomération dont on souhaite gérer les écoles
+     */
     private final Agglomeration agglomeration;
 
     public MenuEcoles(Agglomeration agglomeration) {
         this.agglomeration = agglomeration;
     }
 
+    /**
+     * Affiche le menu pour la gestion des écoles
+     */
     public void getMenu() {
 
         Scanner sc = new Scanner(System.in);
@@ -34,19 +42,23 @@ public class MenuEcoles {
             }
 
             switch (request) {
+                // Ajout d'écoles
                 case "1":
                     System.out.println("_________________________________________________\n");
                     System.out.println("\t\tVILLES SANS ECOLE\n");
-                    this.agglomeration.displayCityWithoutSchool();
+                    this.agglomeration.displayCitiesWithoutSchool();
                     System.out.println("_________________________________________________\n");
 
                     Scanner addSchoolSc = new Scanner(System.in);
                     System.out.print("Votre choix : ");
+                    // Si l'utilisateur rentre un entier
                     if (addSchoolSc.hasNextInt()) {
                         int cityNumber = addSchoolSc.nextInt();
                         System.out.println();
+                        // Si cet entier correspond bien à une ville
                         if (cityNumber <= this.agglomeration.size()) {
                             Ville city = this.agglomeration.get(cityNumber - 1);
+                            // Si cette ville n'a pas déjà une école
                             if (!city.hasSchool()) {
                                 city.setSchool(true);
                                 System.out.println("Vous avez bien ajouté une école à " + city.getName() + ".\n");
@@ -60,52 +72,58 @@ public class MenuEcoles {
                         System.out.println("Veuillez entrer un numéro de ville.\n");
                     }
                     break;
+                // Suppression d'écoles
                 case "2":
                     System.out.println("_________________________________________________\n");
                     System.out.println("\t\tVILLES AVEC UNE ECOLE\n");
-                    this.agglomeration.displayCityWithSchool();
+                    this.agglomeration.displayCitiesWithSchool();
                     System.out.println("_________________________________________________\n");
 
                     Scanner removeSchoolSc = new Scanner(System.in);
                     System.out.print("Votre choix : ");
 
+                    // Si l'utilisateur rentre un entier
                     if (removeSchoolSc.hasNextInt()) {
                         int cityNumber = removeSchoolSc.nextInt();
                         System.out.println();
+                        // Si cet entier correspond bien à une ville
                         if (cityNumber <= this.agglomeration.size()) {
                             Ville city = this.agglomeration.get(cityNumber - 1);
 
+                            // Si la ville n'a pas d'école à retirer, on s'arrête là
                             if (!city.hasSchool()) {
                                 System.out.println(city.getName() + " ne possède pas d'école !\n");
                                 break;
                             }
 
+                            // Sinon, on récupère la liste des villes adjacentes à celle dont ou souhaite retirer la ville
                             boolean[] adjacencyList = this.agglomeration.getCityAdjacency(cityNumber - 1);
 
+                            // On va vérifier si, en retirant cette école, les villes adjacentes ont toujours une école à proximité
                             city.setSchool(false);
-                            ArrayList<Boolean> schools = new ArrayList<Boolean>();
-                            ArrayList<Integer> cities = new ArrayList<Integer>();
+                            boolean isOk = true;
+                            ArrayList<Integer> cities = new ArrayList<>();
 
+                            // Pour chaque ville
                             for (int i = 0; i < this.agglomeration.size(); i++) {
-                                if (adjacencyList[i]){
-                                    if (!this.agglomeration.checkIfCityHasNearbySchool(i)){
-                                        schools.add(false);
-                                        cities.add(i);
-                                    } else {
-                                        schools.add(true);
-                                    }
+                                // Si elle est adjacente et si elle n'a plus d'école dans son voisinage
+                                if (adjacencyList[i] && !this.agglomeration.checkIfCityHasNearbySchool(i)) {
+                                    isOk = false;
+                                    // On récupère les numéros des villes qui posent problème
+                                    cities.add(i);
                                 }
                             }
 
-                            if (!schools.contains(false)) {
+                            // Si tout va bien
+                            if (isOk) {
                                 System.out.println("Vous avez bien supprimé l'école de " + city.getName() + ".\n");
                             } else {
+                                // On remet l'école.
                                 city.setSchool(true);
                                 System.out.println("Vous ne pouvez pas supprimer l'école de " + city.getName() + ".");
                                 System.out.println("Liste des villes qui se retrouveraient sans école dans le voisinage si vous supprimiez l'école de " + city.getName());
-                                cities.forEach((i) -> {
-                                    System.out.println(this.agglomeration.get(i).getName());
-                                });
+                                // On affiche les villes qui n'auraient pas d'école.
+                                cities.forEach((i) -> System.out.println(this.agglomeration.get(i).getName()));
                                 System.out.println();
                             }
 

@@ -2,10 +2,8 @@ package up.mi.ecoles;
 
 import java.util.Scanner;
 
-@SuppressWarnings("unused")
 public class Main {
 
-    @SuppressWarnings("resource")
 	public static void main(String[] args) {
 
         Scanner scannerVille = new Scanner(System.in);
@@ -28,7 +26,7 @@ public class Main {
         System.out.println("_________________________________________________\n");
         System.out.println("\t\t LES VILLES\n");
 
-        agglomeration.displayCity();
+        agglomeration.displayCities();
         
         System.out.println();
         System.out.println("_________________________________________________\n");

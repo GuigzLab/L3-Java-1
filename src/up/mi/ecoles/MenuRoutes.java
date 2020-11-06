@@ -2,14 +2,23 @@ package up.mi.ecoles;
 
 import java.util.Scanner;
 
+/**
+ * Represente le menu pour la gestion des routes
+ */
 public class MenuRoutes {
 
+    /**
+     * L'agglomération dont on souhaite gérer les écoles
+     */
     private final Agglomeration agglomeration;
 
     public MenuRoutes(Agglomeration agglomeration) {
         this.agglomeration = agglomeration;
     }
 
+    /**
+     * Affiche le menu pour la gestion des routes
+     */
     public void getMenu() {
 
         Scanner sc = new Scanner(System.in);
@@ -25,14 +34,14 @@ public class MenuRoutes {
             if ("1".equals(request)) {
                 System.out.println("_________________________________________________\n");
                 System.out.println("\t\tVILLES A RELIER\n");
-                this.agglomeration.displayCity();
+                this.agglomeration.displayCities();
                 System.out.println("_________________________________________________\n");
 
                 Scanner routeSc = new Scanner(System.in);
                 System.out.print("Exemple : x,y \nVotre choix : ");
                 String[] coords = routeSc.nextLine().split(",");
 
-                if (coords.length < 2){
+                if (coords.length < 2) {
                     System.out.println("\nVous devez entrer des numéros de villes séparés par une virgule.\n");
                 } else if (!coords[0].matches("^[0-9]+") || !coords[1].matches("^[0-9]+")) {
                     System.out.println("\nVous devez entrer des numéros de villes uniquement.\n");
