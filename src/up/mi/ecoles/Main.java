@@ -20,7 +20,6 @@ public class Main {
             if (request.equals("")) break;
 
             agglomeration.add(new Ville(request));
-
         }
         
         System.out.println("_________________________________________________\n");
