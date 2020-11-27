@@ -1,5 +1,7 @@
 package up.mi.ecoles;
 
+import java.util.Objects;
+
 /**
  * Représente une ville
  */
@@ -43,5 +45,18 @@ public class Ville {
      */
     public boolean hasSchool() {
         return school;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ville ville = (Ville) o;
+        return name.equals(ville.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

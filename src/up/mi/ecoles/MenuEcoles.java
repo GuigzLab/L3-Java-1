@@ -56,7 +56,7 @@ public class MenuEcoles {
                         int cityNumber = addSchoolSc.nextInt();
                         System.out.println();
                         // Si cet entier correspond bien à une ville
-                        if (cityNumber <= this.agglomeration.size()) {
+                        if (cityNumber <= this.agglomeration.size() && cityNumber > 0) {
                             Ville city = this.agglomeration.get(cityNumber - 1);
                             // Si cette ville n'a pas déjà une école
                             if (!city.hasSchool()) {
