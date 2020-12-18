@@ -240,12 +240,8 @@ public class Agglomeration extends ArrayList<Ville> {
         }
 
         for (Ville ville: map.keySet()){
-            System.out.println(ville.getName() + " " + map.get(ville));
-        }
-
-        /*for (Ville ville: map.keySet()){
             ville.setSchool(map.get(ville) % 2 != 0);
-        }*/
+        }
 
     }
 
@@ -268,5 +264,9 @@ public class Agglomeration extends ArrayList<Ville> {
             }
         }
         return false;
+    }
+
+    public boolean[][] getMatrice() {
+        return matrice;
     }
 }

@@ -22,3 +22,6 @@ route(H,I).
 route(H,J).
 route(H,K).
 ecole(A).
+ecole(C).
+ecole(E).
+ecole(H).

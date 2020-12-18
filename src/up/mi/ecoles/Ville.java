@@ -16,7 +16,7 @@ public class Ville {
      */
     private boolean school = true;
 
-    Ville ( String name) {
+    public Ville(String name) {
         this.name = name;
     }
 

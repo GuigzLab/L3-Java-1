@@ -1,4 +1,6 @@
-package up.mi.ecoles;
+package up.mi.ecoles.menus;
+
+import up.mi.ecoles.Agglomeration;
 
 import java.util.Scanner;
 
